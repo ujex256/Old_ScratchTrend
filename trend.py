@@ -14,7 +14,7 @@ def get_Trending():
         found = soup.select_one(f"#projectBox > div > div > div:nth-of-type({i}) > div > div > a")
         project_data = {'title':found.contents[0], 'id':found.attrs['href'].replace("/","").replace("projects","")}
         trend.append(project_data)
-        return trend
+    return trend
 
 if __name__ == "__main__":
     res = get_Trending()
