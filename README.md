@@ -7,7 +7,7 @@ APIを使わずに作品のタイトルとIDを取得する。
 - chromedriver_binary(作成時は104.0.5112.79.0)
 - Google Chrome(~誰でもいれてるはず~)
 
-chromedriver_binaryはSeleniumが使用できるなら```webdriver.Chrome(executable_path='PATH')```にしてもらえればOKです
+chromedriver_binaryはSeleniumが使用できるなら10行目を```webdriver.Chrome(executable_path='PATH')```にしてもらえればOKです
 # 使い方
 ```get_trends_by_num()```では、start引数からend引数の順位を取得します。
 ```get_trends_by_page()```では、start引数からend引数のページの作品を全て取得します。
