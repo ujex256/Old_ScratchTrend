@@ -1,6 +1,6 @@
 # 概要
 APIを使わずに作品のタイトルとIDを取得する。
-Seleniumで無限(たぶん)に取得できます。BeautifulSoupで取得します
+無限(たぶん)に取得できます。BeautifulSoupでスクレイピングして取得します。
 # 必要なライブラリ(モジュール?)
 - Selenium(作成時は4.4.0)
 - Beautifulsoup4(作成時は4.11.1)
