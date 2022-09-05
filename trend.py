@@ -10,7 +10,7 @@ def startup():
     option.add_argument('--headless')  # ヘッドレスモード(ウィンドウを非表示)
     driver = webdriver.Chrome(options=option)
     driver.get("https://scratch.mit.edu/explore/projects/all")
-    time.sleep(1.5)
+    time.sleep(0.5)
     return driver
 
 
@@ -25,7 +25,7 @@ def get_trends_by_num(start, end):
     if end - start >= 16:
         for j in range(ceil((end-start)/16)):
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
-            time.sleep(1)
+            time.sleep(0.4)
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     trend = list()
@@ -33,11 +33,11 @@ def get_trends_by_num(start, end):
     for i in range(start, end):
         if i % 16 == 0:
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
-            time.sleep(1)
+            time.sleep(0.4)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
         # CSSセレクタで選択し、タイトルとIDを抽出
         found = soup.select_one(f"#projectBox > div > div > div:nth-of-type({i}) > div > div > a")
-        project_data = {'title': found.contents[0], 'id': found.attrs['href'].replace("/", "").replace("projects", "")}
+        project_data = {'title': found.contents[0], 'id': int(found.attrs['href'].replace("/", "").replace("projects", ""))}
         trend.append(project_data)
     return trend
 
@@ -53,7 +53,7 @@ def get_trends_by_page(start, end):
     if start >= 2:
         for i in range(start-1):
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
-            time.sleep(1)
+            time.sleep(0.4)
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     trend = list()
@@ -61,12 +61,12 @@ def get_trends_by_page(start, end):
     for i in range((start-1)*16 + 1, end*16 + 1):
         if i % 16 == 0:
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
-            time.sleep(1)
+            time.sleep(0.4)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
         # CSSセレクタで選択し、タイトルとIDを抽出
         # get_trends_by_num関数と同じ処理をしているので関数にしたかったがややこしくなるなのでしていない
         found = soup.select_one(f"#projectBox > div > div > div:nth-of-type({i}) > div > div > a")
-        project_data = {'title': found.contents[0], 'id': found.attrs['href'].replace("/", "").replace("projects", "")}
+        project_data = {'title': found.contents[0], 'id': int(found.attrs['href'].replace("/", "").replace("projects", ""))}
         trend.append(project_data)
     return trend
 
