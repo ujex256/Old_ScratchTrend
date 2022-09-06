@@ -1,8 +1,11 @@
-from selenium import webdriver
-from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
 from math import ceil
-import chromedriver_binary,time
+import time
+
+from bs4 import BeautifulSoup
+import chromedriver_binary
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
 
 def startup():
     option = webdriver.ChromeOptions()
@@ -23,7 +26,7 @@ def get_trends_by_num(start, end):
     driver = startup()
     # 指定された順位が1Pより下ならそこまで表示させる
     if end - start >= 16:
-        for j in range(ceil((end-start)/16)):
+        for j in range(ceil((end - start) / 16)):
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
             time.sleep(1)
 
@@ -51,14 +54,14 @@ def get_trends_by_page(start, end):
     driver = startup()
     # 指定されたページが2P以上なら表示させる
     if start >= 2:
-        for i in range(start-1):
+        for i in range(start - 1):
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
             time.sleep(1)
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     trend = list()
 
-    for i in range((start-1)*16 + 1, end*16 + 1):
+    for i in range((start - 1) * 16 + 1, end * 16 + 1):
         if i % 16 == 0:
             driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
             time.sleep(1)
