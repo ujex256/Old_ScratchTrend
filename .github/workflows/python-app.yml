@@ -1,12 +1,9 @@
-name: run_selenium
-on:  
- push:    
-   branches:      
-     - release
- pull_request:
-   branches:
-     - feature/**
-   types: [opened, review_requested]
+name: run_selenium 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 jobs:
   run_selenium:
     name: run_selenium
