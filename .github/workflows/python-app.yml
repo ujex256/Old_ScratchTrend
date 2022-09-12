@@ -13,34 +13,14 @@ jobs:
         uses: actions/checkout@v2
       
       # set up chrome driver
-      - name: Setting up chrome driver
-        uses: nanasess/setup-chromedriver@v1
-        with:
-          chromedriver-version: '104.0.5112.79'
-      
-      # set up python
-      - name: Setting up python.
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.9
-        
-      # install poetry
-      - name: Install Poetry
-        run: |
-           curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python3 - 
-      
-      - name: Add path for Poetry
-        run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-             echo "/opt/poetry/bin/poetry" >> $GITHUB_PATH
+      - name: setup
+        run: sudo apt install python3-selenium
+             cd /tmp
+             wget https://dl.google.com/linux/linux_signing_key.pub
+             sudo apt-key add linux_signing_key.pub
+             echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+             sudo apt-get update
+             sudo apt -f install -y
+             sudo apt-get install google-chrome-stable
              
-             echo "/opt/poetry/bin" >> $GITHUB_PATH
-             source /opt/poetry/bin
-             source $HOME/.local/bin
-      
-      # install prod dependencies
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-dev
-
-      # run selenium
-      - name: Run selenium
-        run: poetry run python trend.py
+             google-chrome --version
