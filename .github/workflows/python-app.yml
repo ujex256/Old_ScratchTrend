@@ -35,7 +35,6 @@ jobs:
              source $HOME/.poetry/bin
              
              source /opt/poetry/bin/poetry
-             source $HOME/opt/poetry/bin/poetry
       
       # install prod dependencies
       - name: Install dependencies
