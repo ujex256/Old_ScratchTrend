@@ -1,0 +1,39 @@
+name: run_selenium
+on:
+  workflow_dispatch:
+
+jobs:
+  run_selenium:
+    name: run_selenium
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      # set up chrome driver
+      - name: Setting up chrome driver
+        uses: nanasess/setup-chromedriver@v1
+        with:
+          chromedriver-version: '104.0.5112.79.0'
+      
+      # set up python
+      - name: Setting up python.
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+        
+      # install poetry
+      - name: Install Poetry
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      
+      - name: Add path for Poetry
+        run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      
+      # install prod dependencies
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-dev
+
+      # run selenium
+      - name: Run selenium
+        run: poetry run python trend.py
