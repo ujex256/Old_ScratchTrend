@@ -1,7 +1,12 @@
 name: run_selenium
-on:
-  workflow_dispatch:
-
+on:  
+ push:    
+   branches:      
+     - release
+ pull_request:
+   branches:
+     - feature/**
+   types: [opened, review_requested]
 jobs:
   run_selenium:
     name: run_selenium
@@ -14,7 +19,7 @@ jobs:
       - name: Setting up chrome driver
         uses: nanasess/setup-chromedriver@v1
         with:
-          chromedriver-version: '104.0.5112.79.0'
+          chromedriver-version: '104.0.5112.79'
       
       # set up python
       - name: Setting up python.
