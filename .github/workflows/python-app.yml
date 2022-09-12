@@ -23,3 +23,10 @@ jobs:
              sudo apt-get install google-chrome-stable
              
              google-chrome --version
+             
+      - name: module install
+        run: sudo apt install python3-pip
+             pip install -r requirements.txt
+         
+      - name: Run
+        run: python trend.py
