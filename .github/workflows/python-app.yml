@@ -25,8 +25,7 @@ jobs:
              google-chrome --version
              
       - name: module install
-        run: sudo apt update
-             sudo apt upgrade
+        run: sudo apt upgrade
              sudo apt install python3-pip
              
              pip3 --version
