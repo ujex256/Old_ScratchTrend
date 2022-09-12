@@ -31,6 +31,7 @@ jobs:
       
       - name: Add path for Poetry
         run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+             source ~/.bashrc
       
       # install prod dependencies
       - name: Install dependencies
