@@ -25,9 +25,7 @@ jobs:
              google-chrome --version
              
       - name: module install
-        run: sudo apt upgrade
-             
-             pip install -r requirements.txt
+        run: pip install -r requirements.txt
          
       - name: Run
         run: python trend.py
