@@ -28,7 +28,6 @@ jobs:
       - name: Install Poetry
         run: |
            curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python3 - 
-           ENV PATH="/opt/poetry/bin:$PATH" 
       
       - name: Add path for Poetry
         run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
