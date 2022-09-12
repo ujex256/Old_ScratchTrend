@@ -1,0 +1,49 @@
+name: run_selenium 
+on: [ workflow_dispatch ] 
+jobs:
+  run_selenium:
+    name: run_selenium
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      # set up chrome driver
+      - name: setup
+        run: sudo apt install python3-selenium
+             cd /tmp
+             wget https://dl.google.com/linux/linux_signing_key.pub
+             sudo apt-key add linux_signing_key.pub
+             echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+             sudo apt-get update
+             sudo apt-get install google-chrome-stable
+             
+             google-chrome --version
+             
+      - name: module install
+        run: pip install -r requirements.txt
+         
+      # pytest -> JUnit xml形式で結果を出力
+      - name: PyTest
+        run: |
+          python -m pytest trend --junit-xml results/pytest.xml
+        continue-on-error: true
+
+      # テスト結果の表示
+      - name: Upload Unit Test Results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unit Test Results (Python 3.7)
+          path: results/*.xml
+
+      - name: Download Artifacts
+        if: success() || failure()
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: artifacts/**/*.xml
