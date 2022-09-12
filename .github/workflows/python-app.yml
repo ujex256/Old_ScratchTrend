@@ -32,9 +32,9 @@ jobs:
       - name: Add path for Poetry
         run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
              echo "/opt/poetry/bin/poetry" >> $GITHUB_PATH
-
              
-             echo "$HOME/.local/bin" >> $GITHUB_PATH
+             echo "/opt/poetry/bin" >> $GITHUB_PATH
+             source /opt/poetry/bin
              source $HOME/.local/bin
       
       # install prod dependencies
