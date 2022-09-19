@@ -90,9 +90,7 @@ class trend_data(object):
 
 
 if __name__ == "__main__":
-    print(526458)
     timer = time.perf_counter()
-    print("asd")
     res = trend_data().get_trends_by_num(1, 100)
     timer_end = time.perf_counter()
     print(*res, sep='\n')
