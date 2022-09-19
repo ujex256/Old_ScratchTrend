@@ -43,6 +43,7 @@ class trend_data(object):
         for i in range(start, end):
             selector = f"#projectBox > div > div > div:nth-of-type({i}) > div > div > a"
             if i % 16 == 0:
+                driver.implicitly_wait(10)
                 driver.find_element(By.XPATH, '//*[@id="projectBox"]/button/span').click()
                 # 少し無理やりです
                 driver.implicitly_wait(10)
