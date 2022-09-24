@@ -11,7 +11,7 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 driver = webdriver.Chrome(options=options)
 driver.get("https://scratch.mit.edu/explore/projects/all")
-roop = 0
+
 result = list()
 
 for i in range(197):
