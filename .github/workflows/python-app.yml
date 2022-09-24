@@ -28,4 +28,6 @@ jobs:
         run: pip install -r requirements.txt
          
       - name: Run
-        run: python trend.py
+        run: |
+           python trend.py
+           python /testfile/_scratchlanguage.py
