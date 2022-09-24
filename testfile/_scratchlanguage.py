@@ -29,6 +29,9 @@ for i in range(197):
     result.append(cookie["value"])
 
 print(result)
-if input("ファイルへ出力しますか[y/n] >>") == "y":
-    with open("result.txt", "a") as f:
-        f.write(str(result))
+try:
+    if input("ファイルへ出力しますか[y/n] >>") == "y":
+        with open("result.txt", "a") as f:
+          f.write(str(result))
+except EOFError:
+    pass
