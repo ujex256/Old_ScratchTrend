@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import Select
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
 driver.get("https://scratch.mit.edu/explore/projects/all")
 
