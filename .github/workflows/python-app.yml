@@ -27,8 +27,10 @@ jobs:
       - name: module install
         run: pip install -r requirements.txt
          
-      - name: Run
+      - name: main.py
+        run: python main.py
+
+      - name: scratchlanguage
         run: |
-           python main.py
            cd testfile
            python _scratchlanguage.py
