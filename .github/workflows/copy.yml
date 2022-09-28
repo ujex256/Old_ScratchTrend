@@ -1,0 +1,44 @@
+name: Run!
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      # set up chrome driver
+      - name: Chrome Install
+        run: sudo apt install python3-selenium
+             cd /tmp
+             wget https://dl.google.com/linux/linux_signing_key.pub
+             sudo apt-key add linux_signing_key.pub
+             echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+             sudo apt-get update
+             sudo apt-get install google-chrome-stable
+             
+             google-chrome --version
+         
+      - name: Module install
+        run: pip install -r requirements.txt
+        
+  Run:
+     name: Run
+     runs-on: ubuntu-latest
+     steps:
+        - name: main.py
+          run: |
+           python main.py
+           cd testfile
+           python _scratchlanguage.py
+    
+        - name: scratchlanguage
+          run: |
+           cd testfile
+           python _scratchlanguage.py
