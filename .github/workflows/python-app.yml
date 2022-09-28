@@ -29,6 +29,6 @@ jobs:
          
       - name: Run
         run: |
-           python trend.py
+           python main.py
            cd testfile
            python _scratchlanguage.py
