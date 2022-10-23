@@ -1,3 +1,0 @@
-selenium
-beautifulsoup4
-chromedriver_binary == 105.0.5195.52
