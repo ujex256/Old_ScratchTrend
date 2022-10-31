@@ -1,4 +1,4 @@
-*This is old!! これは古いです。最新版をアップロードする予定です。*
+*This is old!! Latest Version is [here.](https://github.com/henji243/ScratchTrend) これは古いです。最新版は[こちら](https://github.com/henji243/ScratchTrend)*
 ---
 # 概要
 APIを使わずに作品のタイトルとIDを取得します。
